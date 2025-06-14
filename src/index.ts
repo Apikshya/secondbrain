@@ -166,7 +166,8 @@ app.post("/api/v1/brain/:shareLink", async(req, res) => {
         userId: link.userId
     })
 
-    const user = await UserModel.find({
+    // find return in [], but findById return only one object , that's the fix
+    const user = await UserModel.findById({
         _id: link.userId
     })
 
