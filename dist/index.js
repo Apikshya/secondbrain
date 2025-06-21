@@ -75,20 +75,20 @@ app.post("/api/v1/signin", (req, res) => __awaiter(void 0, void 0, void 0, funct
         });
     }
 }));
-app.post("/api/v1/content", middleware_1.userMiddleware, (req, res) => {
+app.post("/api/v1/content", middleware_1.userMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const link = req.body.link;
     const type = req.body.type;
-    db_1.ContentModel.create({
+    yield db_1.ContentModel.create({
         link,
         type,
-        //@ts-ignore
+        title: req.body.title,
         userId: req.userId,
         tags: []
     });
     res.json({
         message: "Content added"
     });
-});
+}));
 app.get("/api/v1/content", middleware_1.userMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const userId = req.userId;
     const content = yield db_1.ContentModel.find({
