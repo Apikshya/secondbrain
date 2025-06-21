@@ -7,9 +7,9 @@ import { userMiddleware } from "./middleware";
 import { random } from "./utils";
 // secrets.js-gremps :returns a secure, random hex string for cryptographic use :"e54jt45tj3j5tk3.."(secure hex)
 // ./utils.js        :returns a simple random number                             :"y3u3h2j3k4"(depends upon the type of function we created)
-// import { ramdon } from "./utils.js"
+// import { randon } from "./utils.js"
 
-
+import cors from "cors";
 
 //yo link ra password haru lai .env ma rakhne + .env lai gitignore ma
 mongoose.connect("mongodb+srv://apikshyashrestha:6AVfH3ooeC3zOGTA@cluster0.p2px6.mongodb.net/brainly")
@@ -20,9 +20,9 @@ mongoose.connect("mongodb+srv://apikshyashrestha:6AVfH3ooeC3zOGTA@cluster0.p2px6
     console.error('MongoDB connection error:', err);
 })
 
-
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 app.post("/api/v1/signup", async (req, res) =>{
     // to do: zod validation , hash the password

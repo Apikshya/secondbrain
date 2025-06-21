@@ -21,7 +21,8 @@ const middleware_1 = require("./middleware");
 const utils_1 = require("./utils");
 // secrets.js-gremps :returns a secure, random hex string for cryptographic use :"e54jt45tj3j5tk3.."(secure hex)
 // ./utils.js        :returns a simple random number                             :"y3u3h2j3k4"(depends upon the type of function we created)
-// import { ramdon } from "./utils.js"
+// import { randon } from "./utils.js"
+const cors_1 = __importDefault(require("cors"));
 //yo link ra password haru lai .env ma rakhne + .env lai gitignore ma
 mongoose_1.default.connect("mongodb+srv://apikshyashrestha:6AVfH3ooeC3zOGTA@cluster0.p2px6.mongodb.net/brainly")
     .then(() => {
@@ -32,6 +33,7 @@ mongoose_1.default.connect("mongodb+srv://apikshyashrestha:6AVfH3ooeC3zOGTA@clus
 });
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
+app.use((0, cors_1.default)());
 app.post("/api/v1/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // to do: zod validation , hash the password
     // if user exist return 401 .. testaii 
